@@ -33,38 +33,44 @@ int main() {
 
     srand(41);
 
-
     //classical research
-    startTimer();
-
-    FILE *log_file = fopen("log.txt","w");
-    char format[] = "%d\t%s\t%s\n" ;
-    int level;
+    FILE *log_file = fopen("log.txt", "w");
+    char format[] = "%d\t%s\t%s\n";
     char *time_lvl0;
     char *time_all_levels;
+    int level;
 
-    for (int k=0; k<1000000; k++){
-        int rdm=rand()%15;
-        printf("%d\n",research_classic(list2,rdm));
+    for (int f = 0; f < 30; f++) {
+        startTimer();
+        for (int k = 0; k < 10000; k++) {
+            int rdm = rand() % 15;
+            printf("%d", research_classic(list2, rdm));
+
+        }
+        stopTimer();
+        displayTime();
+        time_lvl0 = getTimeAsString(); // fonction du module timer
+        fprintf(log_file, format, level, time_lvl0, time_all_levels);
     }
-    stopTimer();
-    displayTime();
-    time_lvl0 = getTimeAsString(); // fonction du module timer
-
-
-    // highest level research
-    startTimer();
-
-    for (int k=1; k<1000000; k++){
-        int rdm=rand()%15;
-        printf("%d\n", high_search(rdm,list2));
-    }
-    stopTimer();
-    displayTime();
     time_all_levels = getTimeAsString();
 
-    fprintf(log_file,format,level,time_lvl0, time_all_levels);
-    fclose(log_file);
+     // highest level research
 
+    for( int f = 0; f < 30; f ++) {
+        startTimer();
+
+        for (int k = 1; k < 10000; k++) {
+            int rdm = rand() % 15;
+            printf("%d", high_search(rdm, list2));
+        }
+        stopTimer();
+        displayTime();
+        time_lvl0 = getTimeAsString(); // fonction du module timer
+        printf("\n");
+        fprintf(log_file, format, level, time_lvl0, time_all_levels);
+    }
+
+    time_all_levels = getTimeAsString();
+    fclose(log_file);
     return 0;
 }
