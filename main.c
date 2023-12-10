@@ -33,13 +33,14 @@ int main() {
 
     srand(41);
 
-    //classical research
     FILE *log_file = fopen("log.txt", "w");
     char format[] = "%d\t%s\t%s\n";
     char *time_lvl0;
     char *time_all_levels;
     int level;
 
+    //classical research
+    
     for (int f = 0; f < 30; f++) {
         startTimer();
         for (int k = 0; k < 10000; k++) {
